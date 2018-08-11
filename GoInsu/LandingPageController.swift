@@ -169,5 +169,17 @@ class LandingPageController: UIViewController {
         }
     
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "findInsurance" {
+            var DestViewController = segue.destination as! UINavigationController
+            let targetController = DestViewController.topViewController as! GoInsuPage
+        }
+    }
+    
+    @IBAction func findDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "findInsurance", sender: self)
+    }
+    
 }
 
