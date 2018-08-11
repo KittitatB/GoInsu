@@ -25,40 +25,28 @@ class LandingPageController: UIViewController {
     @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var sexField: UIButton!
+    @IBOutlet weak var protectionField: UIButton!
+    @IBOutlet weak var minField: UIButton!
+    @IBOutlet weak var maxField: UIButton!
     
     let textField = UITextField()
     let chooseSexDropDown = DropDown()
+    let chooseProtectionDropDown = DropDown()
+    let chooseMinDropDown = DropDown()
+    let chooseMaxDropDown = DropDown()
     
     lazy var dropDowns: [DropDown] = {
         return [
-            self.chooseSexDropDown
+            self.chooseSexDropDown,
+            self.chooseProtectionDropDown,
+            self.chooseMinDropDown,
+            self.chooseMaxDropDown
         ]
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuView.alpha = 0
-        let backgroundImage = #imageLiteral(resourceName: "bg")
-        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-        
-        backgroundImageView.image = backgroundImage
-        backgroundImageView.contentMode = .scaleAspectFill
-        backgroundImageView.alpha = 1
-        self.view.insertSubview(backgroundImageView, at: 0)
-        menuView.layer.cornerRadius = 8.0
-        menuView.clipsToBounds = true
-        menuView.layer.shadowColor = UIColor.black.cgColor
-        menuView.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        menuView.layer.shadowOpacity = 0.2
-        menuView.layer.shadowRadius = 4.0
-        findButton.layer.cornerRadius = 6.0
-        findButton.clipsToBounds = true
-        ageField.isUserInteractionEnabled = true
-        sexField.backgroundColor = .clear
-        sexField.layer.cornerRadius = 6.0
-        sexField.layer.borderWidth = 1
-        sexField.layer.borderColor = UIColor.init(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.7).cgColor
-        menuView.alpha = 1
+        setupView()
         setupDropDown()
         view.addSubview(textField)
         self.hideKeyboardWhenTappedAround()
@@ -66,6 +54,68 @@ class LandingPageController: UIViewController {
     
     @IBAction func sexDropDownTapped(_ sender: Any) {
         chooseSexDropDown.show()
+    }
+    
+    @IBAction func protectionDropDownTapped(_ sender: Any) {
+        chooseProtectionDropDown.show()
+    }
+    
+    @IBAction func maxDropDownTapped(_ sender: Any) {
+        chooseMaxDropDown.show()
+    }
+    
+    @IBAction func minDropDownTapped(_ sender: Any) {
+        chooseMinDropDown.show()
+    }
+    
+    func setupView(){
+        let systemGrey = UIColor.init(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.6).cgColor
+        menuView.alpha = 0
+        let backgroundImage = #imageLiteral(resourceName: "bg")
+        let backgroundImageView = UIImageView.init(frame: self.view.frame)
+        
+        backgroundImageView.image = backgroundImage
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.alpha = 1
+        
+        self.view.insertSubview(backgroundImageView, at: 0)
+        
+        menuView.layer.cornerRadius = 8.0
+        menuView.clipsToBounds = true
+        menuView.layer.shadowColor = UIColor.black.cgColor
+        menuView.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        menuView.layer.shadowOpacity = 0.2
+        menuView.layer.shadowRadius = 4.0
+        
+        findButton.layer.cornerRadius = 6.0
+        findButton.clipsToBounds = true
+        
+        ageField.isUserInteractionEnabled = true
+        ageField.backgroundColor = .clear
+        ageField.layer.cornerRadius = 6.0
+        ageField.layer.borderWidth = 1
+        ageField.layer.borderColor = systemGrey
+        
+        sexField.backgroundColor = .clear
+        sexField.layer.cornerRadius = 6.0
+        sexField.layer.borderWidth = 1
+        sexField.layer.borderColor = systemGrey
+        
+        protectionField.backgroundColor = .clear
+        protectionField.layer.cornerRadius = 6.0
+        protectionField.layer.borderWidth = 1
+        protectionField.layer.borderColor = systemGrey
+        
+        minField.backgroundColor = .clear
+        minField.layer.cornerRadius = 6.0
+        minField.layer.borderWidth = 1
+        minField.layer.borderColor = systemGrey
+        
+        maxField.backgroundColor = .clear
+        maxField.layer.cornerRadius = 6.0
+        maxField.layer.borderWidth = 1
+        maxField.layer.borderColor = systemGrey
+        menuView.alpha = 1
     }
 
     func setupDropDown() {
@@ -77,16 +127,45 @@ class LandingPageController: UIViewController {
         }
         
         chooseSexDropDown.anchorView = sexField
+        chooseProtectionDropDown.anchorView = protectionField
+        chooseMinDropDown.anchorView = minField
+        chooseMaxDropDown.anchorView = maxField
+        
         chooseSexDropDown.bottomOffset = CGPoint(x: 0, y: sexField.bounds.height)
-
-        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseProtectionDropDown.bottomOffset = CGPoint(x: 0, y: protectionField.bounds.height)
+        chooseMinDropDown.bottomOffset = CGPoint(x: 0, y: minField.bounds.height)
+        chooseMaxDropDown.bottomOffset = CGPoint(x: 0, y: maxField.bounds.height)
+        
         chooseSexDropDown.dataSource = [
             "ชาย","หญิง"
         ]
-
-        // Action triggered on selection
+        
+        chooseProtectionDropDown.dataSource = [
+            "มี","ไม่มี"
+        ]
+        
+        chooseMinDropDown.dataSource = [
+            "10,000","20,000","30,000","40,000","50,000","60,000","70,000","80,000","90,000"
+        ]
+        
+        chooseMaxDropDown.dataSource = [
+            "10,000","20,000","30,000","40,000","50,000","60,000","70,000","80,000","90,000"
+        ]
+        
         chooseSexDropDown.selectionAction = { [weak self] (index, item) in
-            self?.sexField.setTitle(item, for: .normal)
+            self?.sexField.setTitle(" "+item, for: .normal)
+        }
+        
+        chooseProtectionDropDown.selectionAction = { [weak self] (index, item) in
+            self?.protectionField.setTitle(" "+item, for: .normal)
+        }
+        
+        chooseMinDropDown.selectionAction = { [weak self] (index, item) in
+            self?.minField.setTitle(" "+item, for: .normal)
+        }
+        
+        chooseMaxDropDown.selectionAction = { [weak self] (index, item) in
+            self?.maxField.setTitle(" "+item, for: .normal)
         }
     
     }
