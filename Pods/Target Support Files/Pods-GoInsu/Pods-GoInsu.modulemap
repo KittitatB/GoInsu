@@ -1,0 +1,6 @@
+module Pods_GoInsu [system] {
+  umbrella header "Pods-GoInsu-umbrella.h"
+
+  export *
+  module * { export * }
+}
