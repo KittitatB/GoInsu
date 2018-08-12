@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E9C7263212076B50005B8A9 /* AllInsurancePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C7262212076B50005B8A9 /* AllInsurancePage.swift */; };
 		4E9EF9DB211F3F2600BCF4DF /* GoInsuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EF9DA211F3F2600BCF4DF /* GoInsuPage.swift */; };
 		4E9EF9DD211F418B00BCF4DF /* InsuranceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EF9DC211F418B00BCF4DF /* InsuranceCell.swift */; };
 		4E9EF9E2211F46D000BCF4DF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EF9E1211F46D000BCF4DF /* Model.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E9C7262212076B50005B8A9 /* AllInsurancePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInsurancePage.swift; sourceTree = "<group>"; };
 		4E9EF9DA211F3F2600BCF4DF /* GoInsuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoInsuPage.swift; sourceTree = "<group>"; };
 		4E9EF9DC211F418B00BCF4DF /* InsuranceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCell.swift; sourceTree = "<group>"; };
 		4E9EF9E1211F46D000BCF4DF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				4E9EF9DA211F3F2600BCF4DF /* GoInsuPage.swift */,
 				4E9EF9DC211F418B00BCF4DF /* InsuranceCell.swift */,
 				4E9EF9E1211F46D000BCF4DF /* Model.swift */,
+				4E9C7262212076B50005B8A9 /* AllInsurancePage.swift */,
 			);
 			path = GoInsu;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				4E9EF9E2211F46D000BCF4DF /* Model.swift in Sources */,
 				4EB67092211DC35C0028AA48 /* LandingPageController.swift in Sources */,
 				4E9EF9DB211F3F2600BCF4DF /* GoInsuPage.swift in Sources */,
+				4E9C7263212076B50005B8A9 /* AllInsurancePage.swift in Sources */,
 				4E9EF9DD211F418B00BCF4DF /* InsuranceCell.swift in Sources */,
 				4EB6707C211DBB500028AA48 /* AppDelegate.swift in Sources */,
 			);

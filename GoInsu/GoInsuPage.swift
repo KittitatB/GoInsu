@@ -21,10 +21,15 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var userFilter = Userfilter()
     
     @IBOutlet weak var abc: UIImageView!
+    @IBOutlet weak var tableview: UITableView!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = "ประกันที่เหมาะกันคุณ"
+        navigationItem.backBarButtonItem?.title = "Back"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "ประกันที่เหมาะกันคุณ"
-        self.navigationItem.leftItemsSupplementBackButton = true;
         var insu1 = Insurance()
         insu1.name = "AAA"
         insu1.image = "TVV"
@@ -38,7 +43,7 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
         insurances.append(insu2)
         insurances.append(insu3)
         abc.image = userFilter.getImage()
-        
+        tableview.separatorStyle = UITableViewCellSeparatorStyle.none;
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,6 +59,7 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let insurance = insurances[indexPath.row]
         cell.title.text = insurance.name
         cell.logo.image = UIImage(named: insurance.image!)
+        cell.selectionStyle = .none
         return cell
     }
     

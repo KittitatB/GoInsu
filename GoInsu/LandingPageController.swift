@@ -184,8 +184,7 @@ class LandingPageController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "findInsurance" {
-            var DestViewController = segue.destination as! UINavigationController
-            let targetController = DestViewController.topViewController as! GoInsuPage
+            let targetController = segue.destination as! GoInsuPage
             targetController.userFilter = self.userFilter
         }
     }
@@ -196,12 +195,27 @@ class LandingPageController: UIViewController {
             if self.userFilter.isMale != nil{
                 if self.userFilter.protection != nil{
                     performSegue(withIdentifier: "findInsurance", sender: self.userFilter)
+                    return
                 }
             }
         }
         let alert = UIAlertController(title: "ไม่สามารถดำเนินการได้", message: "กรุณากรอกข้อมูลให้ถูกต้อง", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "ยอมรับ", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
 }
