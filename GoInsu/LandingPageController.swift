@@ -34,6 +34,7 @@ class LandingPageController: UIViewController {
     let chooseProtectionDropDown = DropDown()
     let chooseMinDropDown = DropDown()
     let chooseMaxDropDown = DropDown()
+    var userFilter = Userfilter()
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -117,7 +118,7 @@ class LandingPageController: UIViewController {
         maxField.layer.borderColor = systemGrey
         menuView.alpha = 1
     }
-
+    
     func setupDropDown() {
         DropDown.setupDefaultAppearance()
         
@@ -153,32 +154,54 @@ class LandingPageController: UIViewController {
         ]
         
         chooseSexDropDown.selectionAction = { [weak self] (index, item) in
+            if item == "ชาย"{
+                self?.userFilter.isMale = true
+            }
+            else{
+                self?.userFilter.isMale = false
+            }
             self?.sexField.setTitle(" "+item, for: .normal)
         }
         
         chooseProtectionDropDown.selectionAction = { [weak self] (index, item) in
+            self?.userFilter.protection = item
             self?.protectionField.setTitle(" "+item, for: .normal)
         }
         
         chooseMinDropDown.selectionAction = { [weak self] (index, item) in
+            let min = item.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range:nil)
+            self?.userFilter.min = Int(min)!
             self?.minField.setTitle(" "+item, for: .normal)
         }
         
         chooseMaxDropDown.selectionAction = { [weak self] (index, item) in
+            let max = item.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range:nil)
+            self?.userFilter.min = Int(max)!
             self?.maxField.setTitle(" "+item, for: .normal)
         }
-    
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "findInsurance" {
             var DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! GoInsuPage
+            targetController.userFilter = self.userFilter
         }
     }
     
     @IBAction func findDidTapped(_ sender: Any) {
-        performSegue(withIdentifier: "findInsurance", sender: self)
+        self.userFilter.age = Int(self.ageField.text!)
+        if self.userFilter.age != nil{
+            if self.userFilter.isMale != nil{
+                if self.userFilter.protection != nil{
+                    performSegue(withIdentifier: "findInsurance", sender: self.userFilter)
+                }
+            }
+        }
+        let alert = UIAlertController(title: "ไม่สามารถดำเนินการได้", message: "กรุณากรอกข้อมูลให้ถูกต้อง", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "ยอมรับ", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

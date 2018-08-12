@@ -18,10 +18,13 @@ class InsuView: UIView{
 class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var insurances = [Insurance]()
+    var userFilter = Userfilter()
     
     @IBOutlet weak var abc: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "ประกันที่เหมาะกันคุณ"
+        self.navigationItem.leftItemsSupplementBackButton = true;
         var insu1 = Insurance()
         insu1.name = "AAA"
         insu1.image = "TVV"
@@ -34,7 +37,7 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
         insurances.append(insu1)
         insurances.append(insu2)
         insurances.append(insu3)
-        abc.image = UIImage(named: "PCC")
+        abc.image = userFilter.getImage()
         
     }
     
