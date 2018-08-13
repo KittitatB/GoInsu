@@ -4,4 +4,5 @@
 target 'GoInsu' do
   pod 'Firebase/Core'
   pod 'DropDown'
+  pod 'Firebase/Database'
 end

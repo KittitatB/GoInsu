@@ -146,7 +146,7 @@ class LandingPageController: UIViewController {
         ]
         
         chooseMinDropDown.dataSource = [
-            "10,000","20,000","30,000","40,000","50,000","60,000","70,000","80,000","90,000"
+            "0","10,000","20,000","30,000","40,000","50,000","60,000","70,000","80,000","90,000"
         ]
         
         chooseMaxDropDown.dataSource = [

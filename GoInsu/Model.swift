@@ -9,9 +9,16 @@
 import UIKit
 
 class Insurance: NSObject {
-    var name: String?
+    var accident: String?
+    var hospital: String?
+    var icu: String?
     var image: String?
-    
+    var max: String?
+    var name: String?
+    var opd: String?
+    var price: String?
+    var room: String?
+    var surgical: String?
 }
 
 class Userfilter: NSObject {
@@ -21,20 +28,6 @@ class Userfilter: NSObject {
     var min: Int = 10000
     var max: Int = 90000
     
-    func containNull() -> Bool {
-        if age != nil{
-            if self.isMale != nil{
-                if self.protection != nil{
-                    if self.min != nil{
-                        if self.max != nil{
-                            return true
-                        }
-                    }
-                }
-            }
-        }
-        return false
-    }
     
     func getImage() -> UIImage {
         switch (self.isMale, self.age as! Int) {

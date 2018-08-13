@@ -7,29 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class AllInsurancePage: UITableViewController{
     var insurances = [Insurance]()
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "ประกันทั้งหมด"
-        navigationItem.backBarButtonItem?.title = "Back"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var insu1 = Insurance()
-        insu1.name = "AAA"
-        insu1.image = "TVV"
-        var insu2 = Insurance()
-        insu2.name = "BBB"
-        insu2.image = "LMG"
-        var insu3 = Insurance()
-        insu3.name = "CCC"
-        insu3.image = "PCC"
-        insurances.append(insu1)
-        insurances.append(insu2)
-        insurances.append(insu3)
+        loadData()
+        navigationItem.backBarButtonItem?.title = "Back"
         tableView.separatorStyle = .none
 
     }
@@ -49,13 +39,48 @@ class AllInsurancePage: UITableViewController{
         let insurance = insurances[indexPath.row]
         cell.title.text = insurance.name
         cell.logo.image = UIImage(named: insurance.image!)
+        cell.hospital.text = insurance.hospital
+        cell.accident.text = insurance.accident
+        cell.icu.text = insurance.icu
+        cell.max.text = insurance.max
+        cell.opd.text = insurance.opd
+        cell.room.text = insurance.room
+        cell.surgr.text = insurance.surgical
+        cell.price.text = insurance.price
         cell.selectionStyle = .none
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 425
+    }
+    
+    func loadData(){
+        insurances.removeAll()
+        Database.database().reference().child("insurance").observeSingleEvent(of: .value, with: {
+            (DataSnapshot) in
+            if let insurancesDictionary = DataSnapshot.value as? [String: AnyObject]{
+                for insuranceDic in insurancesDictionary{
+                    let insurance = Insurance()
+                    insurance.accident = (insuranceDic.value["accident"]) as! String
+                    insurance.hospital = (insuranceDic.value["hospital"]) as! String
+                    insurance.icu = (insuranceDic.value["icu"]) as! String
+                    insurance.image = (insuranceDic.value["image"]) as! String
+                    insurance.max = (insuranceDic.value["max"]) as! String
+                    insurance.name = (insuranceDic.value["name"]) as! String
+                    insurance.opd = (insuranceDic.value["opd"]) as! String
+                    insurance.price = (insuranceDic.value["price"]) as! String
+                    insurance.room = (insuranceDic.value["room"]) as! String
+                    insurance.surgical = (insuranceDic.value["surgical"]) as! String
+                    
+                    self.insurances.append(insurance)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        })
     }
 
 }

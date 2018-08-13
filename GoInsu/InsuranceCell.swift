@@ -19,7 +19,7 @@ class InsuranceCell: UITableViewCell {
     @IBOutlet weak var opd: UILabel!
     @IBOutlet weak var surgr: UILabel!
     @IBOutlet weak var hospital: UILabel!
-    
+    @IBOutlet weak var price: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
