@@ -72,6 +72,7 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
             (DataSnapshot) in
             if let insurancesDictionary = DataSnapshot.value as? [String: AnyObject]{
                 for insuranceDic in insurancesDictionary{
+                    var pricer: Int?
                     let insurance = Insurance()
                     insurance.accident = (insuranceDic.value["accident"]) as! String
                     insurance.hospital = (insuranceDic.value["hospital"]) as! String
@@ -83,14 +84,18 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     insurance.price = (insuranceDic.value["price"]) as! String
                     insurance.room = (insuranceDic.value["room"]) as! String
                     insurance.surgical = (insuranceDic.value["surgical"]) as! String
-                    
-                    self.insurances.append(insurance)
+                    pricer = Int((insurance.price?.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range:nil))!)
+                    print(self.userFilter.max)
+                    if pricer! >= self.userFilter.min && pricer! <= self.userFilter.max{
+                        self.insurances.append(insurance)
+                    }
                 }
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                 }
             }
         })
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,6 +111,13 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if segue.identifier == "apply1" {
             let targetController = segue.destination as! ApplyPage
             targetController.insurance = self.sendedInsurance
+        }
+    }
+    
+    
+    func filterInsurance(){
+        for insurance in insurances{
+            insurances.append(insurance)
         }
     }
 

@@ -25,7 +25,7 @@ class Userfilter: NSObject {
     var age: Int?
     var isMale: Bool?
     var protection: String?
-    var min: Int = 10000
+    var min: Int = 0
     var max: Int = 90000
     
     

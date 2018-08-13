@@ -55,7 +55,10 @@ class ApplyPage: UIViewController {
         }
         else {
             let alert = UIAlertController(title: "สำเร็จ", message: "คุณจะได้รับการติดต่อภายใน 24 ชั่วโมง", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ตกลง", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "ตกลง", style: UIAlertActionStyle.default) { (action) in
+                let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+            })
             self.present(alert, animated: true, completion: nil)
         }
     }

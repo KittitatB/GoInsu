@@ -155,7 +155,7 @@
                                             <constraint firstAttribute="height" constant="30" id="r5s-wM-ECZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="0">
+                                        <state key="normal" title=" 0">
                                             <color key="titleColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -868,6 +868,7 @@
                                     <outlet property="logo" destination="Epo-W8-kLf" id="IhC-Zs-5Wl"/>
                                     <outlet property="max" destination="8S6-GZ-M3k" id="7KJ-eI-dV2"/>
                                     <outlet property="opd" destination="7c8-8l-qEx" id="Qim-SM-1y1"/>
+                                    <outlet property="price" destination="Ogi-13-zzy" id="0KS-eG-8Xy"/>
                                     <outlet property="room" destination="JWp-Z8-Jjl" id="eQ5-5D-GxS"/>
                                     <outlet property="surgr" destination="EBT-5J-Pbq" id="QlN-dj-qb5"/>
                                     <outlet property="title" destination="yEq-bm-pN8" id="cDQ-di-pBc"/>
@@ -1223,6 +1224,6 @@
         <image name="logo" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IpF-Bk-A5M"/>
+        <segue reference="hsd-BZ-32E"/>
     </inferredMetricsTieBreakers>
 </document>

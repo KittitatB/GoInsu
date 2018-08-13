@@ -11,6 +11,7 @@ import Firebase
 
 class AllInsurancePage: UITableViewController{
     var insurances = [Insurance]()
+    var sendedInsurance = Insurance()
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "ประกันทั้งหมด"
@@ -70,10 +71,9 @@ class AllInsurancePage: UITableViewController{
                     insurance.max = (insuranceDic.value["max"]) as! String
                     insurance.name = (insuranceDic.value["name"]) as! String
                     insurance.opd = (insuranceDic.value["opd"]) as! String
-                    insurance.price = (insuranceDic.value["price"]) as! String
                     insurance.room = (insuranceDic.value["room"]) as! String
                     insurance.surgical = (insuranceDic.value["surgical"]) as! String
-                    
+                    insurance.price = (insuranceDic.value["price"]) as! String
                     self.insurances.append(insurance)
                 }
                 DispatchQueue.main.async {
@@ -81,6 +81,18 @@ class AllInsurancePage: UITableViewController{
                 }
             }
         })
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendedInsurance = insurances[indexPath.row]
+        performSegue(withIdentifier: "apply2", sender: self.sendedInsurance)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "apply2" {
+            let targetController = segue.destination as! ApplyPage
+            targetController.insurance = self.sendedInsurance
+        }
     }
 
 }

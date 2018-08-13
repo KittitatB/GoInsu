@@ -176,7 +176,7 @@ class LandingPageController: UIViewController {
         
         chooseMaxDropDown.selectionAction = { [weak self] (index, item) in
             let max = item.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range:nil)
-            self?.userFilter.min = Int(max)!
+            self?.userFilter.max = Int(max)!
             self?.maxField.setTitle(" "+item, for: .normal)
         }
         
