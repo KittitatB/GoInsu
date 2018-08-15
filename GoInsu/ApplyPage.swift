@@ -45,6 +45,7 @@ class ApplyPage: UIViewController {
         max.text = insurance.max
         insuPrice.text = insurance.price
         insuImage.image = UIImage(named: insurance.image!)
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func handleButton(_ sender: Any) {
