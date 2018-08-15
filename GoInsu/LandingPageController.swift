@@ -218,5 +218,6 @@ class LandingPageController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+
 }
 

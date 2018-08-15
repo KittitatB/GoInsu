@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyPage: UIViewController {
+class ApplyPage: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var insuTitle: UILabel!
     @IBOutlet weak var accident: UILabel!
@@ -33,6 +33,8 @@ class ApplyPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        phoneField.delegate = self
+        nameField.delegate = self
         applyButton.layer.cornerRadius = 6.0
         applyButton.clipsToBounds = true
         insuTitle.text = insurance.name
@@ -64,6 +66,11 @@ class ApplyPage: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ nameField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
+    }
+
     
 
 }

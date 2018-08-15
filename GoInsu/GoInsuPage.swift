@@ -85,7 +85,6 @@ class GoInsuPage: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     insurance.room = (insuranceDic.value["room"]) as! String
                     insurance.surgical = (insuranceDic.value["surgical"]) as! String
                     pricer = Int((insurance.price?.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range:nil))!)
-                    print(self.userFilter.max)
                     if pricer! >= self.userFilter.min && pricer! <= self.userFilter.max{
                         self.insurances.append(insurance)
                     }
